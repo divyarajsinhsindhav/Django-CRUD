@@ -1,0 +1,39 @@
+{% extends 'accounts/main.html' %}
+
+{% block main %}
+	<div class="container-fluid">
+		<div class="row pt-5">
+			<div class="col">
+				<h5>CUSTOMER</h5>
+				<hr>
+				<div class="card mt-2">
+					<a class="btn btn-primary btn-sm btn-block" href="">Add Customer</a>
+					<div class="card-body">
+						<table class="table table-striped">
+		  					<thead>
+							    <tr>
+							      <th scope="col">Name</th>
+							      <th scope="col">Email</th>
+							      <th scope="col">Phone</th>
+							      <th scope="col">Date of Joining</th>
+							      <th scope="col">View Customer</th>
+							    </tr>
+							</thead>
+							<tbody>
+							{% for customer in customer %}
+								<tr>
+									<td scope="col">{{customer.name}}</td>
+									<td scope="col">{{customer.email}}</td>
+									<td scope="col">{{customer.phone}}</td>
+									<td scope="col">{{customer.date_created}}</td>
+									<td scope="col"><a class="btn btn-primary" href="{% url 'customer_view' customer.id %}">View</a></td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock main %}

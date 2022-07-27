@@ -1,0 +1,35 @@
+{% extends 'accounts/main.html' %}
+
+{% block main %}
+	<div class="container-fluid">
+		<div class="row pt-5">
+			<div class="col">
+				<h5>PRODUCTS</h5>
+				<hr>
+				<div class="card mt-2">
+					<a class="btn btn-primary btn-sm btn-block" href="">Add Products</a>
+					<div class="card-body">
+						<table class="table table-striped">
+		  					<thead>
+							    <tr>
+							      <th scope="col">Product</th>
+							      <th scope="col">Category</th>
+							      <th scope="col">Price</th>
+							    </tr>
+							</thead>
+							<tbody>
+							{% for i in products %}
+								<tr>
+									<td scope="col">{{i.name}}</th>
+									<td scope="col">{{i.category}}</th>
+									<td scope="col">{{i.price}}</th>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock main %}

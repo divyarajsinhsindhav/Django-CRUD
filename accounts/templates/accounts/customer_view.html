@@ -1,0 +1,73 @@
+{% extends 'accounts/main.html' %}
+
+{% block main %}
+<div class="container-fluid pt-3">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card card-body">
+				<h5>Username: {{customer.name}}</h5>
+				<hr>
+				<a class="btn btn-outline-primary btn-sm btn-block mb-3">Place Order</a>
+				<a class="btn btn-outline-info btn-sm btn-block mb-3" href="">Update Profile</a>
+				<a class="btn btn-outline-danger btn-sm btn-block mb-3" href="">Delete Profile</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card card-body">
+				<h5>Contact Information:</h5>
+				<hr>
+				<p>Email: {{customer.email}}</p>
+				<p>Phone Number: {{customer.phone}}</p>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card card-body">
+				<h5>Total Orders:</h5>
+				<hr>
+				<p class="fs-1 text-center">{{order_count}}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row pt-3">
+		<div class="col">
+			<div class="card card-body">
+				<form method="get">
+					<button class="btn btn-primary" type="submit">Search</button>	
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="row pt-3">
+		<div class="col">
+			<div class="card mt-2">
+				<div class="card-body">
+					<table class="table table-striped">
+	  					<thead>
+						    <tr>
+						      <th scope="col">Product</th>
+						      <th scope="col">Category</th>
+						      <th scope="col">Date Ordered</th>
+						      <th scope="col">Status</th>
+						      <th scope="col">Update</th>
+						      <th scope="col">Remove</th>
+						    </tr>
+						</thead>
+						<tbody>
+						{% for order in orders %}
+							<tr>
+								<td scope="col">{{order.product}}</td>
+								<td scope="col">{{order.product.category}}</td>
+								<td scope="col">{{order.date_order}}</td>
+								<td scope="col">{{order.status}}</td>
+								<td scope="col"><a class="btn btn-primary" href="{% url 'update_order' order.id %}">Update</a></td>
+								<td scope="col"><a class="btn btn-danger" href="{% url 'remove_order' order.id %}">Remove</a></td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock main %}

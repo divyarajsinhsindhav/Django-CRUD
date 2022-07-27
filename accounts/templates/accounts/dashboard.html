@@ -1,0 +1,68 @@
+{% extends 'accounts/main.html' %}
+
+{% block main %}
+
+{% include 'accounts/status.html' %}
+<div class="container-fluid">
+	<div class="row pt-5">
+		<div class="col-md-5">
+			<h5>CUSTOMERS:</h5>
+			<hr>
+			<div class="card mt-2">
+				<a class="btn btn-primary btn-sm btn-block" href="">Create Customer</a>
+				<div class="card-body">
+					<table class="table table-striped">
+	  					<thead>
+						    <tr>
+						      <th scope="col">Customers</th>
+						      <th scope="col">Email</th>
+						      <th scope="col">View Customer</th>
+						    </tr>
+						</thead>
+						<tbody>
+							{% for customer in customer %}
+							<tr>
+								<td scope="col">{{customer.name}}</td>
+								<td scope="col">{{customer.email}}</td>
+								<td scope="col"><a class="btn btn-primary" href="{% url 'customer_view' customer.id %}">View</a></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-7">
+			<h5>LAST 5 ORDERS</h5>
+			<hr>
+			<div class="card mt-2">
+				<a class="btn btn-primary btn-sm btn-block" href="{% url 'create_order' %}">Create Order</a>
+				<div class="card-body">
+					<table class="table table-striped">
+	  					<thead>
+						    <tr>
+						      <th scope="col">Product</th>
+						      <th scope="col">Date Orderd</th>
+						      <th scope="col">Status</th>
+						      <th scope="col">Update</th>
+						      <th scope="col">Remove</th>
+						    </tr>
+						</thead>
+						<tbody>
+							{% for order in orders %}
+							<tr>
+								<td scope="col">{{order.product}}</td>
+								<td scope="col">{{order.date_order}}</td>
+								<td scope="col">{{order.status}}</td>
+								<td scope="col"><a class="btn btn-primary" href="{% url 'update_order' order.id %}">Update</a></td>
+								<td scope="col"><a class="btn btn-danger" href="{% url 'remove_order' order.id %}">Remove</a></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock main %}
